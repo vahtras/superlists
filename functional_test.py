@@ -15,9 +15,9 @@ class NewVisitorTest(unittest.TestCase):
         # to check out its homepage
         self.browser.get('http://localhost:8000')
 
-        # She ntoices the page title and heaer mention to-do lists
+        # She notices the page title and header mention to-do lists
         self.assertIn('To-Do', self.browser.title)
-        header_text = self.browser.find_element_by_name('h1').text
+        header_text = self.browser.find_element_by_tag_name('h1').text
         self.assertIn('To-Do', header_text)
 
         # She is invited to enter a to-do item straight away
