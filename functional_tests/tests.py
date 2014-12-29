@@ -60,11 +60,11 @@ class NewVisitorTest(LiveServerTestCase):
         ## We use a new browser session to make sure that no information
         ## of Edith's is coming through from cookies etc #
         self.browser.quit()
-        self.browser = webdriver.FireFox()
+        self.browser = webdriver.Firefox()
 
         # Francis visits the home page. There is no sign of Edith's list
         self.browser.get(self.live_server_url)
-        page_text = self.borwser.find_element_by_tag_name('body').text
+        page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
 
         # Francis starts a new list by entering a new item. He 
@@ -74,8 +74,9 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox.send_keys(Keys.ENTER)
 
         # Francis gets his own unique URL
-        fancis_list_url = self.browser.current_url
-        self.assertRegex(francis_list_url, '/lists/.+')
+        francis_list_url = self.browser.current_url
+        self.assertRegexpMatches(francis_list_url, '/lists/.+')
+        self.assertNotEqual(francis_list_url, edith_list_url)
 
         # Again, there is no trace of Edith's list
         page_text = self.browser.find_element_by_tag_name('body').text
