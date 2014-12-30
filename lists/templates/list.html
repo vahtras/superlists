@@ -2,6 +2,7 @@
     <head>
         <title>To-Do lists</title>
     </head>
+
     <body>
         <h1>Your To-Do list</h1>
         <form method="POST" action="/lists/{{ list.id }}/add_item">
@@ -14,5 +15,6 @@
                 <tr><td>{{ forloop.counter }}: {{ item.text }}</td></tr>
             {% endfor %}
         </table>
+
     </body>
 </html>
